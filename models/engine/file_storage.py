@@ -31,7 +31,7 @@ class FileStorage:
                 name = key.split('.')
                 if cls.__name__ == name[0]:
                     le_dict[key] = value
-            return le_dict                    
+            return le_dict
         return self.__objects
 
     def new(self, obj):
