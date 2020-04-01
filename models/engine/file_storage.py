@@ -26,12 +26,12 @@ class FileStorage:
             returns a dictionary of __object
         """
         if cls:
-            my_dict = {}
+            le_dict = {}
             for key, value in self.__objects.items():
                 name = key.split('.')
-                if cls is name[0]:
-                    my_dict[key] = value
-            return my_dict                    
+                if cls.__name__ == name[0]:
+                    le_dict[key] = value
+            return le_dict                    
         return self.__objects
 
     def new(self, obj):
@@ -64,6 +64,10 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """delete object
+        Args:
+            obj: given object
+        """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
