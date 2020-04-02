@@ -3,13 +3,15 @@
 import sqlalchemy
 import os
 
+
 class DBStorage():
     """this class is the db engine"""
     __engine = None
     __session = None
+
     def __init__(self):
         """initialice the dbs"""
-       self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
             os.environ.get("HBNB_MYSQL_USER"),
             os.environ.get("HBNB_MYSQL_PWD"),
             os.environ.get("HBNB_MYSQL_HOST"),
