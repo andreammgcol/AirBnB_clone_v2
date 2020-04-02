@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """create a unique FileStorage instance for your application"""
 import os
+from sqlalchemy import Column, String, ForeignKey, create_engine
+from sqlalchemy.orm import relationship, backref
 from models.engine.db_storage import DBStorage
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel

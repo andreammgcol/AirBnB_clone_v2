@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """this is the database engine"""
 import sqlalchemy
+from sqlalchemy import Column, String, ForeignKey, create_engine
+from sqlalchemy.orm import relationship, backref
 import os
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
 from models.city import City
