@@ -2,7 +2,7 @@
 """this is the database engine"""
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, create_engine
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship, backref, scoped_session, sessionmaker 
 import os
 from models.base_model import BaseModel, Base
 from models.user import User
