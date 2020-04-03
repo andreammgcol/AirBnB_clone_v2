@@ -31,14 +31,19 @@ class DBStorage:
 
     def all(self, cls=None):
         """return a dictionary of objects"""
+        print(cls)
         le_dict = {}
         if cls:
             for row in self.__session.query(cls.__name__):
+                print("casita")
                 key = "{}.{}".format(cls.__name__, row.id)
                 le_dict[key] = row
         else:
+            print("vida")
             for le_cls in Base.metadata.tables.keys():
-                for row in self.__session.query(le_cls):
+                print(le_cls)
+                for row in self.__session.query("State"):
+                    print('hola')
                     key = "{}.{}".format(le_cls, row.id)
                     le_dict[key] = row
 
@@ -47,6 +52,7 @@ class DBStorage:
     def new(self, obj):
         """add the object to the session"""
         self.__session.add(obj)
+        self.save()
 
     def save(self):
         """commit"""
@@ -56,6 +62,7 @@ class DBStorage:
         """delete"""
         if obj:
             self.__session.delete(obj.id)
+            self.save()
 
     def reload(self):
         """reload"""
