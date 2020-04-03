@@ -37,10 +37,12 @@ class DBStorage:
                 key = "{}.{}".format(cls.__name__, row.id)
                 le_dict[key] = row
         else:
-            for le_cls in Base.metadata.tables.keys():
-                for row in self.__session.query("State"):
-                    key = "{}.{}".format(le_cls, row.id)
+            for le_cls in [State, User, Place, City, Review]:
+                for row in self.__session.query(le_cls):
+                    key = "{}.{}".format(row.__class__.__name__, row.id)
                     le_dict[key] = row
+        if "_sa_instance_state" in le_dict:
+            del le_dict["_sa_instance_state"]
 
         return le_dict
 
