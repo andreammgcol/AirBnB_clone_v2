@@ -14,7 +14,11 @@ from models.review import Review
 
 
 class DBStorage:
-    """this class is the db engine"""
+    """this class is the db engine
+    Attributes:
+        __file_path: path to the JSON file
+        __objects: objects will be stored
+    """
     __engine = None
     __session = None
 
@@ -30,7 +34,10 @@ class DBStorage:
             Base.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
-        """return a dictionary of objects"""
+        """return a dictionary of objects
+        Return:
+            returns a dictionary of __object
+        """
         le_dict = {}
         if cls:
             for row in self.__session.query(cls.__name__):
@@ -47,7 +54,10 @@ class DBStorage:
         return le_dict
 
     def new(self, obj):
-        """add the object to the session"""
+        """add the object to the session
+        Args:
+            obj: given object
+        """
         self.__session.add(obj)
         self.save()
 
@@ -56,7 +66,10 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete"""
+        """delete
+        Args:
+            obj: given object
+        """
         if obj:
             self.__session.delete(obj.id)
             self.save()
