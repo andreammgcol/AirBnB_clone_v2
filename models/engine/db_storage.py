@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """this is the database engine"""
-import sqlalchemy
-from sqlalchemy import Column, String, ForeignKey, create_engine
-from sqlalchemy.orm import relationship, backref, scoped_session, sessionmaker 
+from sqlalchemy import create_engine, MetaData
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship, backref, scoped_session, sessionmaker
 import os
 from models.base_model import BaseModel, Base
 from models.user import User
@@ -31,19 +31,14 @@ class DBStorage:
 
     def all(self, cls=None):
         """return a dictionary of objects"""
-        print(cls)
         le_dict = {}
         if cls:
             for row in self.__session.query(cls.__name__):
-                print("casita")
                 key = "{}.{}".format(cls.__name__, row.id)
                 le_dict[key] = row
         else:
-            print("vida")
             for le_cls in Base.metadata.tables.keys():
-                print(le_cls)
                 for row in self.__session.query("State"):
-                    print('hola')
                     key = "{}.{}".format(le_cls, row.id)
                     le_dict[key] = row
 
