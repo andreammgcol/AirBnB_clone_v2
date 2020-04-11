@@ -9,26 +9,6 @@ env.hosts = ['35.229.75.124', '54.173.156.111']
 env.user = 'ubuntu'
 
 
-def do_pack():
-    """
-        Method  generates a .tgz archive from the contents
-        of the web_static
-    """
-    date = datetime.now()
-    my_date = date.strftime("%Y%m%d%H%M%S")
-
-    try:
-        if not os.path.isdir("versions"):
-            local("mkdir versions")
-
-        file1 = "versions/web_static_{}.tgz".format(my_date)
-        file2 = local("tar -cvzf {} web_static".format(file1))
-        return file2
-
-    except Exception:
-        return
-
-
 def do_deploy(archive_path):
     """
         Method do_deploy
