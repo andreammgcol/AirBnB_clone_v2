@@ -1,14 +1,14 @@
 #!/usr/bin/python3
+""" Compress before sending """
+
 from datetime import datetime
 from fabric.operations import local, run
 import os.path
 
 
 def do_pack():
-    """
-        Method  generates a .tgz archive from the contents
-        of the web_static
-    """
+    """ Method  generates a .tgz """
+
     date = datetime.now()
     my_date = date.strftime("%Y%m%d%H%M%S")
 
