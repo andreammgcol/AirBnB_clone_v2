@@ -16,8 +16,8 @@ def do_pack():
         if not os.path.isdir("versions"):
             local("mkdir versions")
 
-        file1 = "versions/web_static_{}.tgz web_static".format(my_date)
-        file2 = local("tar -cvzf {}".format(file1))
+        file1 = "versions/web_static_{}.tgz".format(my_date)
+        file2 = local("tar -cvzf {} web_static".format(file1))
         return file2
     except Exception:
         return None
